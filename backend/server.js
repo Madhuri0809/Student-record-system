@@ -1,35 +1,37 @@
+const express = require("express");
+const fs = require("fs");
+const cors = require("cors");
 
-{
- "version": "0.2.0",
- "configurations": [
-  {
-   "name": "Launch Server",
-   "type": "node",
-   "request": "launch",
-   "program": "${workspaceFolder}/backend/server.js",
-   "skipFiles": ["<node_internals>/**"]
-  }
- ]
-} 
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-window.onload = function () {
-  let data = JSON.parse(localStorage.getItem("students")) || [];
-  data.forEach(name => addToList(name));
-};
+const FILE = "data.txt";
 
-function addStudent() {
-  let input = document.querySelector("input");
-  let name = input.value;
+app.get("/", (req, res) => {
+    res.send("Student Record Backend Running");
+});
 
-  let data = JSON.parse(localStorage.getItem("students")) || [];
-  data.push(name);
-  localStorage.setItem("students", JSON.stringify(data));
+app.get("/students", (req, res) => {
+    fs.readFile(FILE, "utf8", (err, data) => {
+        if (err) return res.send([]);
+        res.send(data.split("\n"));
+    });
+});
 
-  addToList(name);
-}
+app.post("/students", (req, res) => {
+    const name = req.body.name;
+    fs.appendFile(FILE, name + "\n", () => {
+        res.send("Student added");
+    });
+});
 
-function addToList(name) {
-  let li = document.createElement("li");
-  li.textContent = name;
-  document.getElementById("studentList").appendChild(li);
-}
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log("Server running on port " + PORT);
+});
+
+
+
+
+
