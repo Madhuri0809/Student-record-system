@@ -1,13 +1,16 @@
-body{
-    font-family: Arial;
-    text-align:center;
+body {
+  font-family: Arial;
+  padding: 20px;
 }
 
-input{
-    margin:5px;
-    padding:8px;
+button {
+  margin-left: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
 }
 
-button{
-    padding:8px 15px;
+li {
+  margin-top: 10px;
 }

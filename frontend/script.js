@@ -1,48 +1,49 @@
-const express = require("express");
-const fs = require("fs");
-const cors = require("cors");
+function addStudent() {
+  let input = document.querySelector("input");
+  let name = input.value;
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+  if (name === "") {
+    alert("Enter student name");
+    return;
+  }
 
-const FILE = "../data.txt";
+  let li = document.createElement("li");
+  li.textContent = name;
 
-// Get students
-app.get("/students", (req, res) => {
-    fs.readFile(FILE, "utf8", (err, data) => {
-        if (err) return res.send([]);
-        res.send(data.split("\n"));
-    });
+  // delete button
+  let delBtn = document.createElement("button");
+  delBtn.textContent = "Delete";
+  delBtn.onclick = function () {
+    li.remove();
+  };
+
+  li.appendChild(delBtn);
+
+  document.getElementById("studentList").appendChild(li);
+
+  input.value = "";
+}
+
+document.getElementById("studentForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  let name = document.getElementById("name").value;
+  let id = document.getElementById("studentId").value;
+  let age = document.getElementById("age").value;
+  let course = document.getElementById("course").value;
+  let dept = document.getElementById("department").value;
+  let phone = document.getElementById("phone").value;
+  let email = document.getElementById("email").value;
+
+  let row = `<tr>
+    <td>${name}</td>
+    <td>${id}</td>
+    <td>${age}</td>
+    <td>${course}</td>
+    <td>${dept}</td>
+    <td>${phone}</td>
+    <td>${email}</td>
+  </tr>`;
+
+  document.getElementById("studentTable").innerHTML += row;
 });
-
-// Add student
-app.post("/students", (req, res) => {
-    const student = req.body.name;
-
-    fs.appendFile(FILE, student + "\n", () => {
-        res.send("Student Added");
-    });
-});
-
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
-});<!DOCTYPE html>
-<html>
-<head>
-<title>Student Record System</title>
-</head>
-
-<body>
-
-<h1>Student Record</h1>
-
-<input id="name" placeholder="Enter student name">
-<button onclick="addStudent()">Add</button>
-
-<ul id="list"></ul>
-
-<script src="script.js"></script>
-
-</body>
-</html>

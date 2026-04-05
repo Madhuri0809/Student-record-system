@@ -1,3 +1,4 @@
-Name: Madhuri C
-Roll number: 38
-Course: BCA IOT
+1,Madhuri,20,BCA,CS,9876543210,madhuri@gmail.com
+2,Meghana,21,BCom,Commerce,9123456780,Meghana@gmail.com
+
+ID,Name,Age,Course,Department,Phone,Email

@@ -1,3 +1,60 @@
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    padding: 20px;
+}
+
+h1 {
+    color: darkblue;
+}
+
+h2 {
+    color: darkgreen;
+}
+
+input {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkorange;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+</style>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,3 +74,37 @@
 
 </body>
 </html>
+
+
+<form id="studentForm">
+  <input type="text" id="name" placeholder="Name" required>
+  <input type="text" id="studentId" placeholder="Student ID">
+  <input type="number" id="age" placeholder="Age">
+  <input type="text" id="course" placeholder="Course">
+  <input type="text" id="department" placeholder="Department">
+  <input type="text" id="phone" placeholder="Phone">
+  <input type="email" id="email" placeholder="Email">
+  
+  <button type="submit">Add Student</button>
+</form>
+
+<h2>Student List</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Age</th>
+      <th>Course</th>
+      <th>Department</th>
+      <th>Phone</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody id="studentTable">
+  </tbody>
+</table>
+
+
+
